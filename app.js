@@ -5,7 +5,6 @@ var logger = require('morgan');
 var auth = require('./middlewares/auth');
 global.mongoose = require('mongoose');
 global.Schema = mongoose.Schema;
-global.JWT_SECRET_KEY = 'JKJAHJS3476HJSHJS76CDHJXTEWX';
 mongoose.Promise = require('bluebird');
 
 global.app = express();
