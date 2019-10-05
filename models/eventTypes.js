@@ -5,7 +5,7 @@
     * @class eventTypeModel
     */
 var eventTypeSchema = new Schema({
-    name : {type: Schema.Types.ObjectId, ref: 'eventTypes'},
+    name : {type: String , required : true},
     isActive: {type: Boolean, default: true},
     isDelete: {type: Boolean, default: false},
 }, {

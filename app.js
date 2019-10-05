@@ -1,9 +1,8 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var http = require('http-server').createServer(app);
+var auth = require('./middlewares/auth');
 global.mongoose = require('mongoose');
 global.Schema = mongoose.Schema;
 global.JWT_SECRET_KEY = 'JKJAHJS3476HJSHJS76CDHJXTEWX';
@@ -11,6 +10,8 @@ mongoose.Promise = require('bluebird');
 
 global.app = express();
 global.router = express.Router();
+
+var http = require('http-server').createServer(app);
 var mongo_server = process.env.mongo_server ||'localhost:27017';
 
 mongoose.connect('mongodb://priyanka:secret@123@ds145184.mlab.com:45184/sviet_clg' , {useNewUrlParser: true});
@@ -23,10 +24,13 @@ global.helper = require('./helpers/_helper');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+
+/*for making middleware authentication as on /off */
+app.use(auth('on'))
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
