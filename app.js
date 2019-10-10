@@ -51,8 +51,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(3000, function() {
-    console.log("server started on port 3000");
+app.get('/', function(req, res){
+	return res.status(200).send('Server OK');
 })
-
 module.exports = app;
